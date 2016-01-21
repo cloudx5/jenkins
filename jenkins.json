@@ -1,0 +1,53 @@
+{
+ "id": "jenkins",
+ "cmd": "catalina.sh run",
+ "mem": 1024,
+ "cpus": 1,
+ "instances": 1,
+ "container": {
+   "type": "DOCKER",
+   "docker": {
+     "image": "justep/jenkins",
+     "network": "BRIDGE",
+     "portMappings": [
+        { "containerPort": 8080, "hostPort": 0, "protocol": "tcp" }
+     ]
+   },
+   "volumes": [
+    {
+      "containerPath": "/var/jenkins_home",
+      "hostPath": "/var/jenkins_home",
+      "mode": "RW"
+    }
+    ]
+ },
+ "env": {
+   "SERVICE_TAGS" : "jenkins,webapp,http,weight=50",
+   "SERVICE_NAME" : "jenkins"
+ },
+ "uris": [],
+ "constraints": [["hostname", "CLUSTER", "192.168.1.8"]],
+ "healthChecks": [
+   {
+     "portIndex": 0,
+     "protocol": "TCP",
+     "gracePeriodSeconds": 30,
+     "intervalSeconds": 10,
+     "timeoutSeconds": 30,
+     "maxConsecutiveFailures": 3
+   },
+   {
+         "path": "/",
+         "portIndex": 0,
+         "protocol": "HTTP",
+         "gracePeriodSeconds": 30,
+         "intervalSeconds": 10,
+         "timeoutSeconds": 30,
+         "maxConsecutiveFailures": 3
+   }
+ ],
+ "upgradeStrategy": {
+    "minimumHealthCapacity": 0.0,
+    "maximumOverCapacity": 0.0
+  }
+}
