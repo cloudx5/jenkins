@@ -10,13 +10,23 @@
      "image": "justep/jenkins",
      "network": "BRIDGE",
      "portMappings": [
-        { "containerPort": 8080, "hostPort": 0, "protocol": "tcp" }
+        { "containerPort": 8080, "hostPort": 31000, "protocol": "tcp" }
      ]
    },
    "volumes": [
     {
       "containerPath": "/var/jenkins_home",
       "hostPath": "/var/jenkins_home",
+      "mode": "RW"
+    },
+    {
+      "containerPath": "/root/.m2",
+      "hostPath": "/var/jenkins_home/.m2",
+      "mode": "RW"
+    },
+    {
+      "containerPath": "/usr/local/tomcat/webapps/dist",
+      "hostPath": "/var/jenkins_home/dist",
       "mode": "RW"
     }
     ]
