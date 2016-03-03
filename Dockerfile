@@ -25,6 +25,7 @@ COPY other/tools.jar "/usr/lib/jvm/java-7-openjdk-amd64/lib/"
 
 RUN apt-get update
 RUN apt-get install -y git
+RUN apt-get install -y maven
 
 EXPOSE 8080
 CMD catalina.sh run
