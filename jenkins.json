@@ -32,7 +32,7 @@
     ]
  },
  "env": {
-   "SERVICE_TAGS" : "jenkins,webapp,http,weight=50",
+   "SERVICE_TAGS" : "jenkins,webapp,http,public,weight=50",
    "SERVICE_NAME" : "jenkins"
  },
  "uris": [],
