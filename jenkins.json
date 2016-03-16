@@ -36,8 +36,8 @@
    "SERVICE_TAGS" : "jenkins,http,haproxy",
    "SERVICE_NAME" : "jenkins"
  },
- "uris": [],
- "constraints": [["hostname", "CLUSTER", "192.168.1.8"]],
+"uris": ["http://192.168.1.8:31000/dist/paas/model.tar.gz", "http://192.168.1.8:31000/dist/paas/paas.war", "http://192.168.1.8:31000/dist/paas/console.sql", "http://192.168.1.8:31000/dist/paas/init.sql","http://192.168.1.8:31000/dist/paas/saas.war"], 
+"constraints": [["hostname", "CLUSTER", "192.168.1.8"]],
  "healthChecks": [
    {
      "portIndex": 0,
