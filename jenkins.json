@@ -7,32 +7,33 @@
  "container": {
    "type": "DOCKER",
    "docker": {
-     "image": "justep/jenkins",
+     "image": "registry.super.com/justep/jenkins",
      "network": "BRIDGE",
      "portMappings": [
         { "containerPort": 8080, "hostPort": 31000, "protocol": "tcp" }
-     ]
+     ],
+     "forcePullImage":true
    },
    "volumes": [
     {
       "containerPath": "/var/jenkins_home",
-      "hostPath": "/var/jenkins_home",
+      "hostPath": "/var/store/jenkins",
       "mode": "RW"
     },
     {
       "containerPath": "/root/.m2",
-      "hostPath": "/var/jenkins_home/.m2",
+      "hostPath": "/var/store/jenkins/.m2",
       "mode": "RW"
     },
     {
       "containerPath": "/usr/local/tomcat/webapps/dist",
-      "hostPath": "/var/jenkins_home/dist",
+      "hostPath": "/var/store/jenkins/dist",
       "mode": "RW"
     }
     ]
  },
  "env": {
-   "SERVICE_TAGS" : "jenkins,webapp,http,weight=50",
+   "SERVICE_TAGS" : "jenkins,http,haproxy",
    "SERVICE_NAME" : "jenkins"
  },
  "uris": [],
